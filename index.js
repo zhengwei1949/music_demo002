@@ -24,14 +24,26 @@ server.on('request',function(req,res){
             res.end();
         });
     }else if(url === '/add' && method === 'GET'){
-        res.write('你访问的添加音乐,get');
-        res.end();
+        // res.write('你访问的添加音乐,get');
+        // res.end();
+        fs.readFile(path.join(__dirname,'views/add.html'),function(err,data){
+            if(err)throw err;
+            res.writeHead(200,{'Content-Type':'text/html;charset=utf8'});
+            res.write(data);
+            res.end();
+        });
     }else if(url === '/add' && method === 'POST'){
         res.write('你访问的添加音乐,post');
         res.end();
     }else if(url === '/edit' && method === 'GET'){
-        res.write('你访问的修改音乐,get');
-        res.end();
+        // res.write('你访问的修改音乐,get');
+        // res.end();
+        fs.readFile(path.join(__dirname,'views/edit.html'),function(err,data){
+            if(err)throw err;
+            res.writeHead(200,{'Content-Type':'text/html;charset=utf8'});
+            res.write(data);
+            res.end();
+        });
     }else if(url === '/edit' && method === 'POST'){
         res.write('你访问的修改音乐,post');
         res.end();
