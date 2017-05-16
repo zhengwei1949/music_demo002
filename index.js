@@ -1,9 +1,21 @@
+// var fs = require('fs');
+// var path = require('path');
+//有二个用途：重命名文件 移动文件
+// fs.rename(path.join(__dirname,'a.txt'),path.join(__dirname,'ceshi/b.txt'),function(err){
+//     if(err)throw err;
+//     console.log('文件移动成功');
+// });
+
+
+
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var querystring = require('querystring');
-var mime = require('mime');
+var querystring = require('querystring'); //a=1&b=2
+var mime = require('mime');//根据文件扩展名来解析出来对应的content-type
 var template = require('art-template');
+var formidable = require('formidable');
+var util = require('util');
 var arr = [
     {
         "id": 1,
@@ -56,19 +68,17 @@ var arr = [
     },
     {
         "id": 8,
-        "title": "王馨平",
-        "singer": "别问我是谁",
-        "music": "王馨平 - 别问我是谁.mp3",
-        "poster": "王馨平.jpg"
-    },
-    {
-        "id": 9,
-        "title": "五环之歌",
-        "singer": "岳云鹏",
-        "music": "岳云鹏,MC Hotdog - 五环之歌.mp3",
-        "poster": "岳云鹏.jpg"
+        "title": "王馨平",//fields.title
+        "singer": "别问我是谁",//fields.singer
+        "music": "王馨平 - 别问我是谁.mp3",//files.music.name
+        "poster": "王馨平.jpg"//files.poster.name
     }
-];
+]; 
+
+
+// arr.length + 1
+//求出最后一项的id + 1
+//求出来id最大值 +１
 
 // console.log(mime.lookup('/public/js/1.js'));
 // console.log(mime.lookup('/public/css/bootstrap.css'));
@@ -108,8 +118,46 @@ server.on('request',function(req,res){
             res.end();
         });
     }else if(url === '/add' && method === 'POST'){
-        res.write('你访问的添加音乐,post');
-        res.end();
+        //收集到前端浏览器填写的数据 --> 拼成一个对象，追加到数组里面去 ---> 跳转到首页
+        // console.log(111);
+        var form = new formidable.IncomingForm();
+        //fields --> 代表普通的文本框的数据 
+        //files --> 获取文件类型的数据
+        // TODO:把获取到的表单数据拼成一个对象
+        form.parse(req, function(err, fields, files) {
+            if(err)throw err;
+            // res.writeHead(200, {'content-type': 'text/plain;charset=utf8'});
+            // res.write('接收到的表单数据:\n\n');
+            //util.inspect把一些对象类型的数据能够转换成字符串 
+            // res.end(util.inspect({fields: fields, files: files}));
+            // console.log(files.music.path);
+            // res.end('wfewfew')
+            fs.rename(files.music.path,path.join(__dirname,'uploads/'+files.music.name),function(err){
+                if(err)throw err;
+                fs.rename(files.poster.path,path.join(__dirname,'uploads/'+files.poster.name),function(err){
+                    if(err)throw err;
+                    // console.log('success');
+                    var tempId;
+                    if(arr.length === 0){
+                        tempId = 1;
+                    }else{
+                        tempId = arr[arr.length - 1].id + 1;
+                    }
+                    arr.push({
+                        id:tempId,
+                        title:fields.title,
+                        singer:fields.singer,
+                        music:files.music.name,
+                        poster:files.poster.name
+                    });
+                    // res.writeHead(200,{'Content-Type':''});
+                    res.writeHead(302,{'Location':'/'});
+                    res.end();
+                })
+            });
+        });
+        // res.write('你访问的添加音乐,post');
+        // res.end();
     }else if(url === '/edit' && method === 'GET'){
         // res.write('你访问的修改音乐,get');
         // res.end();

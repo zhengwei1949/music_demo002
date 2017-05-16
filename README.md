@@ -80,6 +80,9 @@ http://localhost:3000/public/css/bootstrap.css --> /public/css/bootstrap.css
 302:临时性重定向
 360buy.com --> jd.com
 
+/delete 301 --> 
+
+
 
 
 ## 添加功能
