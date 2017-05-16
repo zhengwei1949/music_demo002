@@ -61,6 +61,11 @@ post
 ## 添加首页html文件
 - 测试不能正常访问一直在转圈 --> uploads作为静态资源文件夹 --> 创建一个assets文件夹用来放静态js,css
 
+http://localhost:3000/public/js/1.js --> /public/js/1.js
+http://localhost:3000/public/css/bootstrap.css --> /public/css/bootstrap.css
+/public开头 --> 凡是以/public开头的req.url --> 都是静态文件
+
+
 ## 同样的思路把添加音乐、编辑音乐做出来
 
 ## 给音乐首页添加动态数据 --> art-template
