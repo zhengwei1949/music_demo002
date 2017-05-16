@@ -30,111 +30,21 @@
       
       <!--歌曲列表内容区域-->
       <tbody>
+        {{each arr}}
         <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
+          <td>{{$index}}</td>
+          <td>{{$value.title}}</td>
+          <td>{{$value.singer}}</td>
+          <td>{{$value.music}}</td>
           <td>
-            <img src="../uploads/万晓利.jpg" alt="">
+            <img src="../uploads/{{$value.poster}}" alt="">
           </td>
           <td>
             <a href="edit.html">修改</a>
             <a href="#">删除</a>
           </td>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td>
-            <img src="../uploads/南方二重唱.jpg" alt="">
-          </td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td>
-            <img src="../uploads/岳云鹏.jpg" alt="">
-          </td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>不说再见</td>
-          <td>谭咏麟</td>
-          <td>不说再见-谭咏麟.mp3</td>
-          <td><img src="../uploads/岳云鹏.jpg" alt=""></td>
-          <td>
-            <a href="edit.html">修改</a>
-            <a href="#">删除</a>
-          </td>
-        </tr>
+        {{/each}}
       </tbody>
     </table>
 
