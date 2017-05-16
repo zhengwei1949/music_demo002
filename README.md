@@ -72,5 +72,14 @@ http://localhost:3000/public/css/bootstrap.css --> /public/css/bootstrap.css
 
 ## 删除功能
 
+200 请求数据成功
+404 找不到资源
+500 服务器有问题
+304 资源有缓存
+301:永久性重定向
+302:临时性重定向
+360buy.com --> jd.com
+
+
 
 ## 添加功能

@@ -1,6 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var querystring = require('querystring');
 var mime = require('mime');
 var template = require('art-template');
 var arr = [
@@ -121,8 +122,31 @@ server.on('request',function(req,res){
     }else if(url === '/edit' && method === 'POST'){
         res.write('你访问的修改音乐,post');
         res.end();
-    }else if(url === '/delete'){
-        res.write('你访问的删除音乐');
+    }else if(url.startsWith('/delete')){ // /delete?   id=4&a=2
+        var str = url.split('?')[1];
+        // console.log(Number(querystring.parse(str).id));
+        var index = Number(querystring.parse(str).id);
+        arr.splice(index,1);
+        // res.write(
+        //     `
+        //     <!DOCTYPE html>
+        //     <html lang="en">
+        //     <head>
+        //         <meta charset="UTF-8"/>
+        //         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        //         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        //         <title>Document</title>
+        //     </head>
+        //     <body>
+        //         <script>
+        //             location.href = "/";
+        //         </script>
+        //     </body>
+        //     </html>
+        //     `
+        // );
+        // res.writeHead(200,{'Content-Type':'text/html;charset=utf8'});
+        res.writeHead(302,{'Location':'/'});
         res.end();
     }else if(url.startsWith('/public') || url.startsWith('/uploads')){
         // res.write('静态文件');
