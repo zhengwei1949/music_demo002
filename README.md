@@ -11,6 +11,9 @@
 - 编辑音乐
 - 删除音乐
  
+
+
+
 ## git命令
 - `git init`
 - `git remote add origin git@github.com:zhengwei1949/music_demo002.git`
@@ -23,6 +26,21 @@
 - views是一些静态网页模板
 
 ## 更改练习素材文件夹的权限
+
+用户通过不同的url地址来访问的话，我们的服务器就会返回不同的内容
+
+localhost:3000/ --> 首页
+/add --> 添加音乐
+
+<form action="/add" method="POST">
+
+</form>
+
+
+我们的请求路径是一样的，但是还是可以规划出来二个路由
+get 
+post
+
 
 ## 路由规划
 - / --> 显示音乐
